@@ -2,24 +2,22 @@ class Solution {
 public:
     int maxPower(string s) {
     int len = s.length();
-    int count = 0;
+    int count = 1;
  
     char res = s[0];
-    for (int i=0; i<len; i++)
+    int temp = 1;
+    for (int i=1; i<len; i++)
     {
-        int temp = 1;
-        for (int j=i+1; j<len; j++)
-        {
-            if (s[i] != s[j])
-                break;
+        if (s[i] == res){
             temp++;
+            if (temp > count)
+                count = temp;
+            continue;
         }
- 
-        if (temp > count)
-        {
-            count = temp;
+        else{
+            temp=1;
             res = s[i];
-        }
+        }   
     }
     return count;
     }
